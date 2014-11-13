@@ -14,12 +14,12 @@
       </defaultJobconf>
     </jobTemplate>
   </jobTemplates>
-  <workflow id="wf_megs" title="MERIS MEGS Processor" abstract="MEGS">
+   <workflow id="participant-f" title="Participant F" abstract="Participant F uses MEGS">
     <workflowVersion>1.0</workflowVersion>
     <node id="node_megs">
       <job id="megs" />
       <sources>
-        <source id="data" refid="cas:series">http://catalogue.terradue.int/catalogue/search/MER_RR__1P/description</source>
+        <source id="data" title="Data package URL" abstract="Data package OpenSearch Description Document URL" scope="runtime" refid="cas:series">https://challenges.esa.int/eceo/datapackage/RRPAR/description?key=9d79148d-3e17-414b-9983-e4cef9e88ec6</source>
       </sources>
       <parameters>
       	<parameter id="starttime">2006-07-12T17:15:05.000Z</parameter>
