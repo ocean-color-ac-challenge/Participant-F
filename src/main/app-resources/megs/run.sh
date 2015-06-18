@@ -110,6 +110,17 @@ do
   /application/shared/bin/pconvert.sh --outdir ${outputDir} ${l2}  
   [ $? -ne 0 ] && exit ${ERR_PCONVERT}
 
+  # create RGB quicklook
+  outputname=$( basename ${l2} | sed 's#\.N1##g' )
+  ${_CIOP_APPLICATION_PATH}/shared/bin/pconvert.sh \
+    -f png \
+    -p ${_CIOP_APPLICATION_PATH}/megs/etc/profile.rgb \
+    -o ${myOutput} \
+    ${myOutput}/${outputname}.dim
+
+  ciop-log "INFO" "Publishing png"
+  ciop-publish -m ${myOutput}/${outputname}.png
+
   [ "${pixex}" == "true" ] && {
     # get the POIs
     echo -e "Name\tLatitude\tLongitude" > ${TMPDIR}/poi.csv
@@ -127,7 +138,7 @@ do
     run=${CIOP_WF_RUN_ID}
 
     # apply PixEx BEAM operator
-    ${PATH_TO_SEADAS}/bin/gpt.sh \
+    ${_CIOP_APPLICATION_PATH}/shared/bin/gpt.sh \
       -Pvariable=${l2b} \
       -Pvariable_path=${myOutput} \
       -Poutput_path=${myOutput} \
