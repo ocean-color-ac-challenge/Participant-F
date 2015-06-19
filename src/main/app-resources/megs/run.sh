@@ -51,6 +51,8 @@ inputDir=${megsDir}/input
 outputDir=${megsDir}/output
 
 prdurl="$( ciop-getparam prdurl )"
+publish_l2="$( ciop-getparam publish_l2 )"
+
 if [ "${prdurl}" == "default" ]; then
   prdurl=""
 else
@@ -110,17 +112,6 @@ do
   /application/shared/bin/pconvert.sh --outdir ${outputDir} ${l2}  
   [ $? -ne 0 ] && exit ${ERR_PCONVERT}
 
-  # create RGB quicklook
-  outputname=$( basename ${l2} | sed 's#\.N1##g' )
-  ${_CIOP_APPLICATION_PATH}/shared/bin/pconvert.sh \
-    -f png \
-    -p ${_CIOP_APPLICATION_PATH}/megs/etc/profile.rgb \
-    -o ${myOutput} \
-    ${myOutput}/${outputname}.dim
-
-  ciop-log "INFO" "Publishing png"
-  ciop-publish -m ${myOutput}/${outputname}.png
-
   [ "${pixex}" == "true" ] && {
     # get the POIs
     echo -e "Name\tLatitude\tLongitude" > ${TMPDIR}/poi.csv
@@ -164,13 +155,26 @@ do
     }
   }
 
-  ciop-log "INFO" "Compressing results"
-  tar -C ${outputDir} -cvzf ${l2}.tgz $( basename ${l2} | sed 's#\.N1$#.dim#g' ) $( basename ${l2} | sed 's#\.N1$#.data#g' )
-  [ $? -ne 0 ] && exit ${ERR_TAR}
+[ "${publish_l2}" == "true" ] && {
+    # create RGB quicklook
+    outputname=$( basename ${l2} | sed 's#\.N1##g' )
+    ${_CIOP_APPLICATION_PATH}/shared/bin/pconvert.sh \
+      -f png \
+      -p ${_CIOP_APPLICATION_PATH}/megs/etc/profile.rgb \
+      -o ${myOutput} \
+      ${myOutput}/${outputname}.dim
 
-  #publishing the output
-  ciop-log "INFO" "Publishing $( basename ${l2} ).tgz"
-  ciop-publish -m ${l2}.tgz 
+    ciop-log "INFO" "Publishing png"
+    ciop-publish -m ${myOutput}/${outputname}.png
+
+    ciop-log "INFO" "Compressing results"
+    tar -C ${outputDir} -cvzf ${l2}.tgz $( basename ${l2} | sed 's#\.N1$#.dim#g' ) $( basename ${l2} | sed 's#\.N1$#.data#g' )
+    [ $? -ne 0 ] && exit ${ERR_TAR}
+
+    #publishing the output
+    ciop-log "INFO" "Publishing $( basename ${l2} ).tgz"
+    ciop-publish -m ${l2}.tgz 
+}
 
   #clears the directory for the next file
   rm -rf ${megsDir}/*
