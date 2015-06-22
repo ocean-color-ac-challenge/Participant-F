@@ -18,6 +18,7 @@ ERR_MEGS=5
 ERR_PCONVERT=8
 ERR_TAR=10
 ERR_JAVAVERSION=15
+ERR_BEAM_PIXEX=20
 
 # add a trap to exit gracefully
 function cleanExit ()
@@ -32,6 +33,7 @@ function cleanExit ()
     ${ERR_PCONVERT})  msg="Conversion to BEAM-DIMAP failed";;
     ${ERR_TAR})  msg="Compression of BEAM-DIMAP failed";;
     ${ERR_JAVAVERSION}) msg="The version of the JVM must be at least 1.7";;
+    ${ERR_BEAM_PIXEX}) msg="Error during PixEx"
     *)    msg="Unknown error";;
   esac
 
@@ -156,7 +158,7 @@ do
     }
   }
 
-[ "${publish_l2}" == "true" ] && {
+  [ "${publish_l2}" == "true" ] && {
     # create RGB quicklook
     outputname=$( basename ${l2} | sed 's#\.N1##g' )
     ${_CIOP_APPLICATION_PATH}/shared/bin/pconvert.sh \
@@ -175,7 +177,7 @@ do
     #publishing the output
     ciop-log "INFO" "Publishing $( basename ${l2} ).tgz"
     ciop-publish -m ${l2}.tgz 
-}
+  }
 
   #clears the directory for the next file
   rm -rf ${megsDir}/*

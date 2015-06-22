@@ -36,6 +36,11 @@
     </dependency>
     <dependency>
       <groupId>org.esa.beam</groupId>
+      <artifactId>beam-pixel-extraction</artifactId>
+      <version>5.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.esa.beam</groupId>
       <artifactId>beam-pconvert</artifactId>
       <version>5.0</version>
     </dependency>
