@@ -52,6 +52,7 @@ outputDir=${megsDir}/output
 
 prdurl="$( ciop-getparam prdurl )"
 publish_l2="$( ciop-getparam publish_l2 )"
+pixex="$( ciop-getparam pixex )"
 
 if [ "${prdurl}" == "default" ]; then
   prdurl=""
