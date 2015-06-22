@@ -33,7 +33,7 @@ function cleanExit ()
     ${ERR_PCONVERT})  msg="Conversion to BEAM-DIMAP failed";;
     ${ERR_TAR})  msg="Compression of BEAM-DIMAP failed";;
     ${ERR_JAVAVERSION}) msg="The version of the JVM must be at least 1.7";;
-    ${ERR_BEAM_PIXEX}) msg="Error during PixEx"
+    ${ERR_BEAM_PIXEX}) msg="Error during PixEx";;
     *)    msg="Unknown error";;
   esac
 
