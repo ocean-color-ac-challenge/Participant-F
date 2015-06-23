@@ -2,15 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.terradue.ciop.app</groupId>
-  <artifactId>megs-meris-ac</artifactId>
+  <artifactId>Participant-F</artifactId>
   <packaging>rpm</packaging>
-  <name>MEGS-MERIS_AC</name>
-  <description>MEGS-MERIS_AC</description>
+  <name>Participant-F</name>
+  <description>Participant-F</description>
   <version>1.0.1-SNAPSHOT</version>
   <scm>
-    <connection>scm:git:git@github.com:ocean-color-ac-challenge/megs-meris-ac.git</connection>
-    <developerConnection>scm:git:git@github.com:ocean-color-ac-challenge/megs-meris-ac.git</developerConnection>
-    <url>https://github.com/ocean-color-ac-challenge/megs-meris-ac</url>
+    <connection>scm:git:git@github.com:ocean-color-ac-challenge/Participant-F.git</connection>
+    <developerConnection>scm:git:git@github.com:ocean-color-ac-challenge/Participant-F.git</developerConnection>
+    <url>https://github.com/ocean-color-ac-challenge/Participant-F</url>
     <tag>HEAD</tag>
   </scm>
   <dependencies>
