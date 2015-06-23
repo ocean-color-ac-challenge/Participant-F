@@ -125,7 +125,7 @@ do
     aggregation="$( ciop-getparam aggregation )"
 
     # invoke pixex
-    l2b="$( basename ${l2output} | sed 's#\.L2$#.dim#g')"
+    l2b="$( basename ${l2} | sed 's#\.N1$#.dim#g')"
     prddate="${l2b:20:2}/${l2b:18:2}/${l2b:14:4}"
     ciop-log "INFO" "Apply BEAM PixEx Operator to ${l2b}"
     prd_orbit=$( echo ${l2b:49:5} | sed 's/^0*//' )
@@ -134,8 +134,8 @@ do
     # apply PixEx BEAM operator
     ${_CIOP_APPLICATION_PATH}/shared/bin/gpt.sh \
       -Pvariable=${l2b} \
-      -Pvariable_path=${myOutput} \
-      -Poutput_path=${myOutput} \
+      -Pvariable_path=${outputDir} \
+      -Poutput_path=${outputDir} \
       -Pprefix=${run} \
       -Pcoordinates=${TMPDIR}/poi.csv \
       -PwindowSize=${window} \
@@ -145,16 +145,16 @@ do
     res=$?
     [ ${res} -ne 0 ] && exit ${ERR_BEAM_PIXEX}
 
-    result="$( find ${myOutput} -name "${run}*measurements.txt" )"
+    result="$( find ${outputDir} -name "${run}*measurements.txt" )"
 
     [ -n "${result}" ] && {
       skip_lines=$( cat "${result}" | grep -n "ProdID" | cut -d ":" -f 1 )
 
-      cat "${result}" |  tail -n +${skip_lines} | tr "\t" "," | awk -f ${_CIOP_APPLICATION_PATH}/pixex/libexec/tidy.awk -v run=${run} -v date=${prddate} -v orbit=${prd_orbit} - > "${myOutput}/${l2b}.txt"
+      cat "${result}" |  tail -n +${skip_lines} | tr "\t" "," | awk -f ${_CIOP_APPLICATION_PATH}/pixex/libexec/tidy.awk -v run=${run} -v date=${prddate} -v orbit=${prd_orbit} - > "${outputDir}/${l2b}.txt"
 
       ciop-log "INFO" "Publishing extracted pixel values"
-      ciop-publish -m "${myOutput}/${l2b}.txt"
-      rm -f "${myOutput}/${l2b}.txt"
+      ciop-publish -m "${outputDir}/${l2b}.txt"
+      rm -f "${outputDir}/${l2b}.txt"
     }
   }
 
@@ -164,11 +164,11 @@ do
     ${_CIOP_APPLICATION_PATH}/shared/bin/pconvert.sh \
       -f png \
       -p ${_CIOP_APPLICATION_PATH}/megs/etc/profile.rgb \
-      -o ${myOutput} \
-      ${myOutput}/${outputname}.dim
+      -o ${outputDir} \
+      ${outputDir}/${outputname}.dim
 
     ciop-log "INFO" "Publishing png"
-    ciop-publish -m ${myOutput}/${outputname}.png
+    ciop-publish -m ${outputDir}/${outputname}.png
 
     ciop-log "INFO" "Compressing results"
     tar -C ${outputDir} -cvzf ${l2}.tgz $( basename ${l2} | sed 's#\.N1$#.dim#g' ) $( basename ${l2} | sed 's#\.N1$#.data#g' )
@@ -180,5 +180,5 @@ do
   }
 
   #clears the directory for the next file
-  rm -rf ${megsDir}/*
+  #rm -rf ${megsDir}/*
 done
