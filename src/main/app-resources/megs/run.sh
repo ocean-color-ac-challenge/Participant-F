@@ -180,5 +180,5 @@ do
   }
 
   #clears the directory for the next file
-  #rm -rf ${megsDir}/*
+  rm -rf ${megsDir}/*
 done
