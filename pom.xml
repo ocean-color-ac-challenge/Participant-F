@@ -6,7 +6,7 @@
   <packaging>rpm</packaging>
   <name>Participant-F</name>
   <description>Participant-F</description>
-  <version>1.0</version>
+  <version>1.1</version>
   <scm>
     <connection>scm:git:git@github.com:ocean-color-ac-challenge/Participant-F.git</connection>
     <developerConnection>scm:git:git@github.com:ocean-color-ac-challenge/Participant-F.git</developerConnection>
@@ -112,7 +112,7 @@
       </extension>
     </extensions>
     <plugins>
-     <plugin>
+      <plugin>
         <groupId>org.codehaus.gmaven</groupId>
         <artifactId>gmaven-plugin</artifactId>
         <executions>
@@ -136,7 +136,7 @@ user_reference(env['USER'])
             </configuration>
           </execution>
         </executions>
-      </plugin>    
+      </plugin>
       <plugin>
         <artifactId>maven-clean-plugin</artifactId>
         <version>2.5</version>
@@ -191,7 +191,7 @@ user_reference(env['USER'])
               </resources>
             </configuration>
           </execution>
-	<execution>
+          <execution>
             <id>copy-jars</id>
             <phase>install</phase>
             <goals>
@@ -243,16 +243,16 @@ user_reference(env['USER'])
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>rpm-maven-plugin</artifactId>
-	<version>2.1-alpha-4</version>
-	<extensions>true</extensions>
+        <version>2.1-alpha-4</version>
+        <extensions>true</extensions>
         <configuration>
           <copyright>${project.inceptionYear}, Terradue, GPL</copyright>
           <distribution>Terradue ${project.inceptionYear}</distribution>
           <group>air</group>
           <packager>Terradue</packager>
-	  <summary>ESA MEGS(c) atmospheric correction</summary>
+          <summary>ESA MEGS(c) atmospheric correction</summary>
           <description/>
-	  <name>${project.artifactId}</name>
+          <name>${project.artifactId}</name>
           <defaultDirmode>775</defaultDirmode>
           <defaultFilemode>664</defaultFilemode>
           <defaultUsername>root</defaultUsername>
@@ -284,15 +284,15 @@ user_reference(env['USER'])
                   <location>${project.build.directory}/dependency/jars</location>
                 </source>
               </sources>
-            </mapping>	    
+            </mapping>
             <mapping>
               <directory>/application</directory>
               <sources>
                 <source>
                   <location>${basedir}/src/main/app-resources</location>
                   <includes>
-		     <include>**/run.sh</include>
-		  </includes>
+                    <include>**/run.sh</include>
+                  </includes>
                 </source>
               </sources>
               <filemode>775</filemode>
@@ -305,6 +305,9 @@ user_reference(env['USER'])
             <require>megs</require>
           </requires>
           <needarch>noarch</needarch>
+          <postinstallScriptlet>
+            <script><![CDATA[ echo -e "<?xml version='1.0' encoding='utf-8'?>\n<properties>\n\t<github_repository version='\${project.version}'>\${project.artifactId}</github_repository>\n</properties>" > /application/properties.xml ]]></script>
+          </postinstallScriptlet>
         </configuration>
       </plugin>
       <plugin>
