@@ -6,7 +6,7 @@
   <packaging>rpm</packaging>
   <name>Participant-F</name>
   <description>Participant-F</description>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.2-SNAPSHOT</version>
   <scm>
     <connection>scm:git:git@github.com:ocean-color-ac-challenge/Participant-F.git</connection>
     <developerConnection>scm:git:git@github.com:ocean-color-ac-challenge/Participant-F.git</developerConnection>
@@ -340,6 +340,19 @@ user_reference(env['USER'])
             <version>1.9</version>
           </dependency>
         </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <id>parse-version</id>
+            <goals>
+              <goal>parse-version</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>de.jutzig</groupId>
