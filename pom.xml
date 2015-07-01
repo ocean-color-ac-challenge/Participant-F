@@ -6,7 +6,7 @@
   <packaging>rpm</packaging>
   <name>Participant-F</name>
   <description>Participant-F</description>
-  <version>1.2-SNAPSHOT</version>
+  <version>1.3-SNAPSHOT</version>
   <scm>
     <connection>scm:git:git@github.com:ocean-color-ac-challenge/Participant-F.git</connection>
     <developerConnection>scm:git:git@github.com:ocean-color-ac-challenge/Participant-F.git</developerConnection>
