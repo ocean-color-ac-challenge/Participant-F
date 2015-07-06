@@ -107,8 +107,12 @@ do
   ciop-log "INFO" "Starting megs processor"
   sh run_megs.sh "${file}" ${prdurl} 
 
-  [ $? -ne 0 ] && exit ${ERR_MEGS}
-  
+  #[ $? -ne 0 ] && exit ${ERR_MEGS}
+  [ $? -ne 0 ] && {
+    ciop-log "WARN" "error processing file $( basename ${file} )"
+    continue
+  }  
+
   ciop-log "INFO" "Conversion to BEAM-DIMAP format"
   l2="$( find ${outputDir} -type f -name "MER*.N1" )"
   ciop-log "DEBUG" "found: ${l2}"
