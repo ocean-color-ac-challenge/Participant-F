@@ -99,7 +99,18 @@ Invoke the application via the Dashboard with the parameters listed in the test 
 
 | Output                                                             | Size |
 |--------------------------------------------------------------------|------|
-
+|MER_RR__2PNACR20060730_093546_000021432049_00480_23079_0000.N1.tgz|393.95 MB|
+|MER_RR__2PNACR20060730_093546_000021432049_00480_23079_0000.png|13.01 MB|
+|MER_RR__2PRACR20030306_201313_000026082014_00243_05307_0000.N1.tgz|458.53 MB|
+|MER_RR__2PRACR20030306_201313_000026082014_00243_05307_0000.png|21.89 MB|
+|MER_RR__2PRACR20040903_201756_000026282030_00057_13137_0000.N1.tgz|466.59 MB|
+|MER_RR__2PRACR20040903_201756_000026282030_00057_13137_0000.png|23.12 MB|
+|MER_RR__2PRACR20050504_093419_000026382037_00022_16609_0000.N1.tgz|454.38 MB|
+|MER_RR__2PRACR20050504_093419_000026382037_00022_16609_0000.png|18.13 MB|
+|MER_RR__2PRACR20070920_092716_000026302061_00437_29048_0000.N1.tgz|470.38 MB|
+|MER_RR__2PRACR20070920_092716_000026302061_00437_29048_0000.png|17.06 MB|
+|MER_RR__2PRACR20080816_092020_000026302071_00165_33786_0000.N1.tgz|469.77 MB|
+|MER_RR__2PRACR20080816_092020_000026302071_00165_33786_0000.png|18.2 MB|
 * Test pass/fail criteria
 
 All products listed in test outputs specification are generated
@@ -126,6 +137,10 @@ Invoke the application via the Dashboard with the parameters listed in the test 
 
 | Output                                                             | Size |
 |--------------------------------------------------------------------|------|
+|MER_FRS_2PPEPA20040711_020449_000002422028_00275_12353_1787.N1.tgz|585.52 MB|
+|MER_FRS_2PPEPA20040711_020449_000002422028_00275_12353_1787.png|24.37 MB|
+|MER_FRS_2PPEPA20040717_021529_000002642028_00361_12439_1968.N1.tgz|751.59 MB|
+|MER_FRS_2PPEPA20040717_021529_000002642028_00361_12439_1968.png|22.65 MB|
 
 * Test pass/fail criteria
 
@@ -153,6 +168,12 @@ Invoke the application via the Dashboard with the parameters listed in the test 
 
 | Output                                                             | Size |
 |--------------------------------------------------------------------|------|
+|MER_RR__2PNACR20060730_093546_000021432049_00480_23079_0000.dim.txt|3.34 KB|
+MER_RR__2PRACR20030306_201313_000026082014_00243_05307_0000.dim.txt|2.62 KB|
+MER_RR__2PRACR20040903_201756_000026282030_00057_13137_0000.dim.txt|2.66 KB|
+MER_RR__2PRACR20050504_093419_000026382037_00022_16609_0000.dim.txt|3.36 KB|
+MER_RR__2PRACR20070920_092716_000026302061_00437_29048_0000.dim.txt|3.36 KB|
+MER_RR__2PRACR20080816_092020_000026302071_00165_33786_0000.dim.txt|3.38 KB|
 
 * Test pass/fail criteria
 
@@ -180,6 +201,8 @@ Invoke the application via the Dashboard with the parameters listed in the test 
 
 | Output                                                             | Size |
 |--------------------------------------------------------------------|------|
+|MER_FRS_2PPEPA20040711_020449_000002422028_00275_12353_1787.dim.txt|4.1 KB|
+MER_FRS_2PPEPA20040717_021529_000002642028_00361_12439_1968.dim.txt|3.24 KB|
 
 * Test pass/fail criteria
 
